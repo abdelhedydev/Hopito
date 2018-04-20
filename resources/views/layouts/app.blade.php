@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('https://i0.wp.com/static.mopik.net/img/3840x2400/hospital_8284_mopik.jpg?resize=1920,1200&quality=100');background-repeat: no-repeat;background-size: 100%;">
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#f8f9fa;">
             <div class="container">
@@ -41,10 +41,13 @@
                       <img src="{{URL::asset('/img/calendar.png')}}" alt="profile Pic" ></a></li>
                       <li><a class="nav-link" href="/patient">Patients
                       <img src="{{URL::asset('/img/patient.png')}}" alt="profile Pic" ></a></li>
-                      <li><a class="nav-link" href="">Test
-                      <img src="{{URL::asset('/img/test.png')}}" alt="profile Pic" ></a></li>
-                      <li><a class="nav-link" href="/secretaire">R H
-                      <img src="{{URL::asset('/img/group.png')}}" alt="profile Pic" ></a></li>
+                      @if(Auth::user()->role=='admin')
+                        <li><a class="nav-link" href="">Test
+                        <img src="{{URL::asset('/img/test.png')}}" alt="profile Pic" ></a></li>
+                        <li><a class="nav-link" href="/secretaire">R H
+                        <img src="{{URL::asset('/img/group.png')}}" alt="profile Pic" ></a></li>
+                      @endif
+
                     </ul>
 
                   @endguest

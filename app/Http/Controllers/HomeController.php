@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\RDV;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $mydate = Carbon::now()->toDateString();
+        $rdv= RDV::all();
+        return view('home')->with("parameters",["mydate"=>$mydate,"rdv"=>$rdv]);
+
     }
 }
