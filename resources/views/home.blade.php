@@ -53,7 +53,7 @@
                                     <form class="" action ='{{ url("rende/$rdv->id")}}'  method="post">
                                       <input name="_method" type="hidden" value="DELETE">
                                       {{ csrf_field() }}
-                                      <input type="submit" class="btn btn-sm btn-primary btn-block" role="button"/></td>
+                                      <input type="submit" value="Supprimmer" class="btn btn-sm btn-primary btn-block" role="button"/></td>
                                     </form>
                                  </td>
                               </tr>
@@ -109,7 +109,7 @@
                                  <form class="" action ='{{ url("rende/$rdv->id")}}'  method="post">
                                  <input name="_method" type="hidden" value="DELETE">
                                   {{ csrf_field() }}
-                                 <input type="submit" class="btn btn-sm btn-primary btn-block" role="button"/></td>
+                                 <input type="submit" value="Supprimmer" class="btn btn-sm btn-primary btn-block" role="button"/></td>
                                </form>
                               </td>
                                </td>
