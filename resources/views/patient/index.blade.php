@@ -54,7 +54,7 @@
                         <div class="form-group">
                           <label class="col-lg-4 control-label" for="passwordinput" >Date</label>
                           <div class="col-md-12">
-                            <input required name="date" type="date" placeholder="+216 97 555 666" class="form-control input-md">
+                            <input required name="date" type="date" placeholder="" class="form-control input-md">
                           </div>
                         </div>
 
@@ -62,7 +62,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Time</label>
                           <div class="col-12">
-                            <input required class="form-control" name="time" type="time" value="13:45:00" id="example-time-input">
+                            <input required class="form-control" name="time" type="time" value="10:05:00" id="example-time-input">
                           </div>
                         </div>
 
@@ -76,7 +76,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Etape</label>
                           <div class="col-12">
-                            <input required class="form-control" type="number" min="0" max="1" name="etape">
+                            <input required class="form-control" type="number" min="1" name="etape">
                           </div>
                         </div>
                         </fieldset>
@@ -85,12 +85,13 @@
 
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" form="form{{$patient->id}}" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="submit" form="form{{$patient->id}}" class="btn btn-primary">Ajouter</button>
                   </div>
                 </div>
               </div>
             </div>
+            {{-- end Modal --}}
         </td>
 
         <td>

@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
 </head>
-<body style="background-image: url('https://i0.wp.com/static.mopik.net/img/3840x2400/hospital_8284_mopik.jpg?resize=1920,1200&quality=100');background-repeat: no-repeat;background-size: 100%;">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#f8f9fa;">
             <div class="container">
