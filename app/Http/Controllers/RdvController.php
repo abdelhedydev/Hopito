@@ -39,7 +39,7 @@ class rdvController extends Controller
       $rdv->date = $request->input('date');
       $rdv->valeur = $request->input('valeur');
       $rdv->etape = $request->input('etape');
-      $rdv->id_patient = $request->input('id_patient');
+      $rdv->patient_id = $request->input('id_patient');
       $rdv->save();
       return redirect("/patient");
     }

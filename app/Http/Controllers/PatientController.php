@@ -43,15 +43,24 @@ class PatientController extends Controller
     public function store(Request $req)
     {
       $patient = new Patient();
+
+      //responsable
+      $patient->responsable_full_name = $req->input('responsable_full_name');
+      $patient->responsable_cin = $req->input('responsable_cin');
+      $patient->telephone = $req->input('responsable_telephone');
+      $patient->responsable = $req->input('responsable');
+      //patient
      $patient->nom = $req->input('nom');
      $patient->prenom = $req->input('prenom');
-     $patient->adresse = $req->input('addresse');
-     $patient->age = $req->input('age');
-     $patient->sexe = $req->input('sexe');
      $patient->naissance = $req->input('naissance');
-     $patient->responsable = $req->input('responsable');
-     $patient->telephone = $req->input('telephone');
-
+     $patient->adresse = $req->input('addresse');
+     $patient->sexe = $req->input('sexe');
+      //famille
+      $patient->rang_famille = $req->input('rang_famille');
+      $patient->nbre_fr_sr = $req->input('nbre_fr_sr');
+      $patient->garde = $req->input('garde');
+      //lettre
+      $patient->lettre = $req->input('lettre');
      $patient->save();
        return redirect('patient');
     }
@@ -89,14 +98,23 @@ class PatientController extends Controller
     public function update(Request $req, $id)
     {
         $patient = patient::find($id);
-        $patient->nom = $req->input('nom');
-        $patient->prenom = $req->input('prenom');
-        $patient->adresse = $req->input('addresse');
-        $patient->age = $req->input('age');
-        $patient->sexe = $req->input('sexe');
-        $patient->naissance = $req->input('naissance');
+        //responsable
+        $patient->responsable_full_name = $req->input('responsable_full_name');
+        $patient->responsable_cin = $req->input('responsable_cin');
+        $patient->telephone = $req->input('responsable_telephone');
         $patient->responsable = $req->input('responsable');
-        $patient->telephone = $req->input('telephone');
+        //patient
+       $patient->nom = $req->input('nom');
+       $patient->prenom = $req->input('prenom');
+       $patient->naissance = $req->input('naissance');
+       $patient->adresse = $req->input('addresse');
+       $patient->sexe = $req->input('sexe');
+        //famille
+        $patient->rang_famille = $req->input('rang_famille');
+        $patient->nbre_fr_sr = $req->input('nbre_fr_sr');
+        $patient->garde = $req->input('garde');
+        //lettre
+        $patient->lettre = $req->input('lettre');
 
         $patient->save();
           return redirect('patient');

@@ -15,18 +15,21 @@
     @foreach($parameters['rdv_today'] as $rdv )
       @if($rdv->date==$parameters['mydate'])
   {{-- crd  --}}
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="card text-center" style="width: 12rem;">
       <div class="card-body">
         <h5 class="card-title">
           {{ $rdv->patient->nom}}
+          {{ $rdv->patient->prenom}}
           </h5>
-        <p class="card-text">Etape {{$rdv->etape}} </p>
+        <p class="card-text text-primary">Etape {{$rdv->etape}}  </p>
         <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="{{$rdv->valeur}}">5%</div>
-</div>/{{$rdv->valeur}}
+</div>
 <br>
-        <a href="#" class="btn btn-outline-dark">{{$rdv->time}}</a>
+        <a href="#" class="btn btn-outline-light text-dark">
+          <img src="{{URL::asset('/img/clock.png')}}" alt="profile Pic" >{{$rdv->time}}</a>
+          <p>Total : {{$rdv->valeur}}</p>
       </div>
     </div>
   </div>
@@ -54,12 +57,12 @@
 
 
          <tr>
-             <td>heni</td>
+             <td>{{ $rdv->patient->nom}}</td>
              <td>{{$rdv->date}}</td>
              <td>{{$rdv->time}}</td>
              <td>{{$rdv->valeur}}</td>
              <td>
-               {{$rdv->etape==1}}
+               {{$rdv->etape}}
 
 
              </td>

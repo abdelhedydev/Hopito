@@ -11,11 +11,10 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nome & Prenom</th>
-      <th scope="col">Adresse</th>
-      <th scope="col">Sexe</th>
-      <th scope="col">Age</th>
-      <th scope="col">Responsable</th>
-      <th scope="col">telephone</th>
+      <th scope="col">Interlocuteur</th>
+      <th scope="col">Date de naissance</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">Lettre</th>
       <th scope="col"></th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -27,13 +26,40 @@
       <tr>
         <th scope="row">{{$patient->id}}</th>
         <td>{{$patient->nom}} {{$patient->prenom}}</td>
-        <td>{{$patient->adress}}</td>
-        <td>{{$patient->sexe}}</td>
-        <td>{{$patient->age}} ans</td>
-        <td>{{$patient->responsable}}</td>
+        <td>{{$patient->responsable_full_name}} :: {{$patient->responsable}}</td>
+        <td>{{$patient->naissance}} </td>
         <td>{{$patient->telephone}}</td>
+        <td>{{$patient->lettre}}</td>
         <td>
-          Profil
+          <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info" ></a>
+          <!-- Modal Info-->
+          <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{$patient->nom}} {{$patient->prenom}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h4><img src="{{URL::asset('/img/parent.png')}}" alt="profile Pic" > <u>Interlocuteur</u> :  {{$patient->responsable_full_name}}</h4>
+                      <h5>Telephone : {{$patient->telephone}}</h5>
+                      <h5>Cin : {{$patient->telephone}}</h5>
+                      <h5>Role : {{$patient->responsable}}</h5>
+                      <br>
+                  <h4><img src="{{URL::asset('/img/child.png')}}" alt="profile Pic" ><u>Patient</u></h4>
+                  <h5>Date  : {{$patient->naissance}}</h5>
+                  <h5>Adresse : {{$patient->adresse}}</h5>
+                  <h5>Sexe : @if ($patient->responsable == 'F') Femme @else Homme @endif</h5>
+                  <h5>Nbre fr & Sr : {{$patient->nbre_fr_sr}}</h5>
+                  <h5>Garde : {{$patient->garde}}</h5>
+                </div>
+
+              </div>
+            </div>
+            </div>
+            {{-- end Modal --}}
         </td>
         <td>
           <a href="#"><img src="{{URL::asset('/img/calendar.png')}}" alt="profile Pic" data-toggle="modal" data-target="#myModal{{$patient->id}}" ></a>
@@ -73,12 +99,19 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="textinput">Etape</label>
-                          <div class="col-12">
-                            <input required class="form-control" type="number" min="1" name="etape">
-                          </div>
-                        </div>
+
+          <div class="form-group">
+    <label class="col-md-4 control-label" for="exampleFormControlSelect1">Etape Traitement</label>
+    <div class="col-12">
+    <select class="form-control" name="etape" id="exampleFormControlSelect1">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  </div>
                         </fieldset>
                         <input type="hidden" name="id_patient" value="{{$patient->id}}"/>
                       </form>
@@ -119,4 +152,5 @@
 </table>
 
 </div>
+
 @endsection
