@@ -26,14 +26,14 @@
       <tr>
         <th scope="row">{{$patient->id}}</th>
         <td>{{$patient->nom}} {{$patient->prenom}}</td>
-        <td>{{$patient->responsable_full_name}} :: {{$patient->responsable}}</td>
+        <td>{{$patient->responsable_full_name}} / {{$patient->responsable}}</td>
         <td>{{$patient->naissance}} </td>
         <td>{{$patient->telephone}}</td>
         <td>{{$patient->lettre}}</td>
         <td>
-          <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info" ></a>
+          <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info{{$patient->id}}" ></a>
           <!-- Modal Info-->
-          <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="info{{$patient->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -63,12 +63,12 @@
         </td>
         <td>
           <a href="#"><img src="{{URL::asset('/img/calendar.png')}}" alt="profile Pic" data-toggle="modal" data-target="#myModal{{$patient->id}}" ></a>
-          <!-- Modal -->
+          <!-- Modal RDV-->
             <div class="modal fade" id="myModal{{$patient->id}}" >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Ajouter rdv</h4>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter rendez-vous</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                   </div>
@@ -95,21 +95,45 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Valeur</label>
                           <div class="col-12">
-                            <input required class="form-control" type="number" name="valeur">
-                          </div>
+                          @if (count($query)>0)
+                              @foreach ($query as $k)
+                              @if ($k->patient_id == $patient->id)
+                              <input required class="form-control" type="number" value="{{$k->valeur}}" name="valeur">
+                              <small id="passwordHelpInline" class="text-muted">
+                                  nombre des anciens rendez-vous  {{$k->nbr}} / Etape  {{$k->etape}}
+                                </small>
+                              @break;
+                              {{-- Patient n'a ps de rdv--}}
+                            @endif
+                          @endforeach
+                {{-- no query --}}
+                        @else
+                            <input required class="form-control" type="number" name="valeur" placeholder="000">
+                            @endif
+
+                            </div>
                         </div>
 
 
           <div class="form-group">
-    <label class="col-md-4 control-label" for="exampleFormControlSelect1">Etape Traitement</label>
+
+    <label class="col-md-4 control-label" for="exampleFormControlSelect1">Etape  Traitement</label>
     <div class="col-12">
-    <select class="form-control" name="etape" id="exampleFormControlSelect1">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
+      @if(count($query)>0)
+          @foreach ($query as $k)
+              @if  (($k->patient_id == $patient->id)&&($k->nbr == $k->valeur))
+                <input class="form-control " id="disabledInput" type="text" placeholder="Etape" value="{{$k->etape+1}}" name="etape"  >
+                @break;
+              @elseif (($k->patient_id == $patient->id)&&($k->nbr < $k->valeur))
+                <input class="form-control" id="disabledInput" type="text" placeholder="Etape" value="{{$k->etape}}" name="etape"  >
+                @break;
+
+              @endif
+        @endforeach
+      {{-- no query (pas de rendez vous) --}}
+    @else
+      <input class="form-control" id="disabledInput" type="text" placeholder="Etape" value="1" name="etape"  >
+    @endif
   </div>
   </div>
                         </fieldset>

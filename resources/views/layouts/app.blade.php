@@ -41,10 +41,10 @@
                       <img src="{{URL::asset('/img/calendar.png')}}" alt="profile Pic" ></a></li>
                       <li><a class="nav-link" href="/patient">Patients
                       <img src="{{URL::asset('/img/patient.png')}}" alt="profile Pic" ></a></li>
+                      <li><a class="nav-link" href="/test">Test
+                      <img src="{{URL::asset('/img/test.png')}}" alt="profile Pic" ></a></li>
                       @if(Auth::user()->role=='admin')
-                        <li><a class="nav-link" href="">Test
-                        <img src="{{URL::asset('/img/test.png')}}" alt="profile Pic" ></a></li>
-                        <li><a class="nav-link" href="/secretaire">R H
+                        <li><a class="nav-link" href="/rh">R H
                         <img src="{{URL::asset('/img/group.png')}}" alt="profile Pic" ></a></li>
                       @endif
 

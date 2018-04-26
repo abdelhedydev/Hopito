@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Patient ;
 
+use DB;
+
 class PatientController extends Controller
 {
 
@@ -21,7 +23,15 @@ class PatientController extends Controller
     public function index()
     {
       $patient=Patient::all();
-      return view('patient.index')->with('patients',$patient);
+      //Pour le champs etape / valeur
+      $query_etape = DB::table('r_d_v_s')
+                     ->select(DB::raw('count(*) as nbr'),'patient_id','valeur','etape')
+                     ->groupBy('patient_id','valeur','etape')
+                     ->havingRaw('nbr > 0')
+                     ->orderBy('valeur', 'asc')
+                     ->get();
+
+      return view('patient.index')->with(['patients'=>$patient,'query'=>$query_etape]);
     }
 
     /**

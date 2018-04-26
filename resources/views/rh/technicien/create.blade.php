@@ -1,30 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-  <h2>rh</h2>
 <div class="container">
-  <form class="" action ="{{ url('patient') }}"  method="post">
+  <form class="" action ="{{ url('technicien') }}"  method="post">
    {{csrf_field()}}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nom</label>
-      <input type="text" class="form-control" id="nom" name="nom"  placeholder="Nom">
+      <input type="text" class="form-control" id="nom" name="nom"  placeholder="Nom" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Prenom</label>
-      <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
+      <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" required>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="Address" name="addresse" placeholder="12 rue liberté Béja Tunis">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Telephone</label>
+      <input type="tel" class="form-control" id="telephone" name="telephone"  placeholder="+216" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Adresse</label>
+      <input type="text" class="form-control" id="addresse" name="addresse" placeholder="10 rue tunis" required>
+    </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputCity">Age</label>
-      <input type="number" class="form-control" name="age" id="age">
+      <label for="inputCity">Identifiant (cin)</label>
+      <input type="texte" class="form-control" name="cin" id="cin" required>
     </div>
 
     <div class="form-group col-md-4">
@@ -47,19 +52,15 @@
 
     <div class="form-group col-md-4">
       <label for="inputZip">Date de naissance</label>
-      <input type="date" class="form-control" id="naissance" name="naissance">
+      <input type="date" class="form-control" id="naissance" name="naissance" required>
     </div>
 
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="responsable">Responsable</label>
-      <input type="text" class="form-control" id="responsable" name="responsable" placeholder="Nom responsable">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="telephone">Num telephone</label>
-      <input type="phone" class="form-control" id="telephone" name="telephone" placeholder="+216">
+      <label for="responsable">Date de début</label>
+      <input type="date" class="form-control" id="date_debut" name="date_debut" placeholder="Nom responsable" required>
     </div>
   </div>
   <button type="submit" class="btn btn-success">Enregistrer</button>

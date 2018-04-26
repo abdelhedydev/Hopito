@@ -10,4 +10,8 @@ class RDV extends Model
   {
       return $this->belongsTo('App\Patient');
   }
+  public function user()
+  {
+      return $this->belongsTo('App\User');
+  }
 }

@@ -49,9 +49,10 @@ class SecretaireController extends Controller
      $secretaire->sexe = $req->input('sexe');
      $secretaire->naissance = $req->input('naissance');
      $secretaire->date_debut = $req->input('date_debut');
+     $secretaire->telephone = $req->input('telephone');
 
      $secretaire->save();
-       return redirect('secretaire');
+       return redirect('rh');
     }
 
     /**
@@ -94,9 +95,11 @@ class SecretaireController extends Controller
       $secretaire->sexe = $req->input('sexe');
       $secretaire->naissance = $req->input('naissance');
       $secretaire->date_debut = $req->input('date_debut');
+      $secretaire->telephone = $req->input('telephone');
+
 
      $secretaire->save();
-       return redirect('secretaire');
+       return redirect('rh');
     }
 
     /**
@@ -109,6 +112,6 @@ class SecretaireController extends Controller
     {
       $secretaire = Secretaire::find($id);
            $secretaire->delete();
-          return redirect('secretaire');
+          return redirect('rh');
     }
 }

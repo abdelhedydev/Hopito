@@ -8,36 +8,52 @@
 
   </p>
 <h4>Aujourd'hui</h4>
-@if (!isset($parameters['rdv']))
-  <b>pas de rdv aujourd'hui</b>
+
+
+@if (count($parameters['rdv'])<=0)
+  <h6>Pas de rendez-vous ...</h6>
 @else
-<div class="row">
+<div class="card-deck">
     @foreach($parameters['rdv_today'] as $rdv )
-      @if($rdv->date==$parameters['mydate'])
-  {{-- crd  --}}
-  <div class="col-sm-3">
-    <div class="card text-center" style="width: 12rem;">
+  {{-- rdv aujourd'jui  --}}
+  <div class="col-3">
+    <div class="card border-light mb-3 " style="width: 12rem;">
       <div class="card-body">
         <h5 class="card-title">
           {{ $rdv->patient->nom}}
           {{ $rdv->patient->prenom}}
           </h5>
-        <p class="card-text text-primary">Etape {{$rdv->etape}}  </p>
+          @if ($rdv->etape ==1)
+            <p class="card-text text-success">Étape {{$rdv->etape}}  </p>
+          @elseif ($rdv->etape == 2)
+              <p class="card-text text-danger">Étape {{$rdv->etape}}  </p>
+          @elseif ($rdv->etape > 2)
+                <p class="card-text text-warning ">Étape {{$rdv->etape}}  </p>
+          @endif
+          {{-- progressbar --}}
         <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="{{$rdv->valeur}}">5%</div>
-</div>
+          @foreach ($parameters['query'] as $k)
+          @if ($k->patient_id == $rdv->patient_id)
+<div class="progress-bar" role="progressbar" style="width:{{ floor(($k->nbr / $rdv->valeur)*100)+10}}%;" aria-valuenow="{{ $k->nbr}}" aria-valuemin="0" aria-valuemax="{{$rdv->valeur}}">{{ floor(($k->nbr / $rdv->valeur)*100)}}%</div>
+@break;
+          @endif
+          @endforeach
+        </div>
 <br>
-        <a href="#" class="btn btn-outline-light text-dark">
-          <img src="{{URL::asset('/img/clock.png')}}" alt="profile Pic" >{{$rdv->time}}</a>
-          <p>Total : {{$rdv->valeur}}</p>
+        <center>
+          <a href="#" class="btn btn-outline-light text-dark">
+            <img src="{{URL::asset('/img/clock.png')}}" alt="profile Pic" >{{$rdv->time}}</a>
+            <p>Total : {{$rdv->valeur}}</p>
+        </center>
       </div>
-    </div>
+    </div>{{--end crd  --}}
+    <br>
   </div>
-  {{--end crd  --}}
-      @endif
+
     @endforeach
+
 </div>
-@endif
+@endif {{-- end of rdv ajrd'hui --}}
 <br>
 <h4>Tous Les RDV</h4>
 <table class="table table-striped table-condensed">
@@ -57,7 +73,7 @@
 
 
          <tr>
-             <td>{{ $rdv->patient->nom}}</td>
+             <td>{{ $rdv->patient->nom}} {{ $rdv->patient->prenom}}</td>
              <td>{{$rdv->date}}</td>
              <td>{{$rdv->time}}</td>
              <td>{{$rdv->valeur}}</td>

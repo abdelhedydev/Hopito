@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RDV;
+use Auth ;
 
 class rdvController extends Controller
 {
@@ -40,6 +41,7 @@ class rdvController extends Controller
       $rdv->valeur = $request->input('valeur');
       $rdv->etape = $request->input('etape');
       $rdv->patient_id = $request->input('id_patient');
+      $rdv->user_id= Auth::user()->id ;
       $rdv->save();
       return redirect("/patient");
     }

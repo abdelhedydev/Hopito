@@ -26,14 +26,27 @@ class HomeController extends Controller
     public function index()
     {
         $mydate = Carbon::now()->toDateString();
-        $rdv= RDV::orderBy('time')->get();
-        $rdv2= RDV::orderBy('date')->get();
 
-      /*  $patients = DB::table('r_d_v_s')
-                     ->select(DB::raw('count(*) as nbr, patient_id'))
-                     ->groupBy('patient_id')->get();
-*/
-        return view('home')->with("parameters",["mydate"=>$mydate,"rdv_today"=>$rdv,"rdv"=>$rdv2]);
+        //Progress Bar
+        $query_etape = DB::table('r_d_v_s')
+                       ->select(DB::raw('count(*) as nbr'),'patient_id','valeur','etape')
+                       ->groupBy('patient_id','valeur','etape')
+                       ->orderBy('valeur', 'asc')
+                       ->where('date', '=', $mydate)
+                       ->get();
 
+
+
+        $rdv= RDV::orderBy('time')->where('date', '=', $mydate)->get();//Pour aujourd'hui
+        $rdv2= RDV::orderBy('date','desc')->get();//Tous les rdvs
+
+
+        return view('home')->with("parameters",["rdv_today"=>$rdv,"rdv"=>$rdv2,"query"=>$query_etape]);
+
+    }
+
+    public function test(){
+      return view('test.index');
+      //return redirect("/test");
     }
 }

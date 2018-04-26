@@ -16,9 +16,15 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="Address" name="addresse" value="{{$secretaire->adrresse}}" placeholder="12 rue liberté Béja Tunis">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Telephone</label>
+      <input type="tel" class="form-control" id="telephone" name="telephone" value="{{$secretaire->telephone}}"  placeholder="+216" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Adresse</label>
+      <input type="text" class="form-control" id="addresse" name="addresse" value="{{$secretaire->adrresse}}" placeholder="10 rue tunis" required>
+    </div>
   </div>
 
   <div class="form-row">
