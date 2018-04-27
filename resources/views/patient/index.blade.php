@@ -12,9 +12,9 @@
       <th scope="col">#</th>
       <th scope="col">Nome & Prenom</th>
       <th scope="col">Interlocuteur</th>
+      <th scope="col">Role</th>
       <th scope="col">Date de naissance</th>
       <th scope="col">Telephone</th>
-      <th scope="col">Lettre</th>
       <th scope="col"></th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -26,10 +26,10 @@
       <tr>
         <th scope="row">{{$patient->id}}</th>
         <td>{{$patient->nom}} {{$patient->prenom}}</td>
-        <td>{{$patient->responsable_full_name}} / {{$patient->responsable}}</td>
+        <td>{{$patient->responsable_full_name}} </td>
+        <td>{{$patient->responsable}} </td>
         <td>{{$patient->naissance}} </td>
         <td>{{$patient->telephone}}</td>
-        <td>{{$patient->lettre}}</td>
         <td>
           <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info{{$patient->id}}" ></a>
           <!-- Modal Info-->
@@ -37,28 +37,80 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">{{$patient->nom}} {{$patient->prenom}}</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    @if ($patient->sexe == 'F')
+                      <img class="img "    src="{{URL::asset('/img/girl.png')}}" style="width:50px;height:50px"   alt="Card image cap">
+                    @else
+                      <img class="img "    src="{{URL::asset('/img/boy.png')}}" style="width:50px;height:50px"       alt="Card image cap">
+                    @endif
+                      {{$patient->nom}} {{$patient->prenom}}
+                   </h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h4><img src="{{URL::asset('/img/parent.png')}}" alt="profile Pic" > <u>Interlocuteur</u> :  {{$patient->responsable_full_name}}</h4>
-                      <h5>Telephone : {{$patient->telephone}}</h5>
-                      <h5>Cin : {{$patient->telephone}}</h5>
-                      <h5>Role : {{$patient->responsable}}</h5>
-                      <br>
-                  <h4><img src="{{URL::asset('/img/child.png')}}" alt="profile Pic" ><u>Patient</u></h4>
-                  <h5>Date  : {{$patient->naissance}}</h5>
-                  <h5>Adresse : {{$patient->adresse}}</h5>
-                  <h5>Sexe : @if ($patient->responsable == 'F') Femme @else Homme @endif</h5>
-                  <h5>Nbre fr & Sr : {{$patient->nbre_fr_sr}}</h5>
-                  <h5>Garde : {{$patient->garde}}</h5>
+                        {{--  info sart here --}}
+
+                          <div class="row">
+                              <div class="col-6">
+                                    <h5>Cin</h5>
+                              </div>
+                              <div class="col-6">
+                                  <h6>{{$patient->responsable_cin}}</h6>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-6">
+                                    <h5>Adresse</h5>
+                              </div>
+                              <div class="col-6">
+                                  <h6>{{$patient->adresse}}</h6>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-6">
+                                    <h5>Rang Famille</h5>
+                              </div>
+                              <div class="col-6">
+                                  <h6>{{$patient->rang_famille}}</h6>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-6">
+                                    <h5>Nombre des fréres</h5>
+                              </div>
+                              <div class="col-6">
+                                  <h6>{{$patient->nbre_fr_sr}}</h6>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                    <h5>Garde</h5>
+                              </div>
+                              <div class="col-6">
+                                  <h6>{{$patient->garde}}</h6>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-2">
+                                <img class="img "    src="{{URL::asset('/img/letter.png')}}" style="width:50px;height:50px"   alt="Card image cap">
+                              </div>
+                              <div class="col-10">
+                                  <h6>{{$patient->lettre}}</h6>
+                              </div>
+                          </div>
+
+                          {{--  info sart here --}}
                 </div>
 
               </div>
             </div>
-            </div>
+          </div>
             {{-- end Modal --}}
         </td>
         <td>
