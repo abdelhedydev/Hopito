@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Technicien;
+use App\User ;
+use Illuminate\Support\Facades\Hash;
 
 class TechnicienController extends Controller
 {
@@ -42,6 +44,12 @@ class TechnicienController extends Controller
     public function store(Request $req)
     {
       $technicien = new Technicien();
+      $user = new User();
+      $user->name = $req->input('nom');
+      $user->email = $req->input('email');
+      $user->password = Hash::make($req->input('password'));
+      $user->save();
+      //technicien
      $technicien->nom = $req->input('nom');
      $technicien->prenom = $req->input('prenom');
      $technicien->adrresse = $req->input('addresse');
@@ -50,7 +58,7 @@ class TechnicienController extends Controller
      $technicien->naissance = $req->input('naissance');
      $technicien->date_debut = $req->input('date_debut');
      $technicien->telephone = $req->input('telephone');
-
+     $technicien->user_id = $user->id ;
 
      $technicien->save();
        return redirect('rh');

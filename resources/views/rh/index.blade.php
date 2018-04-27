@@ -23,109 +23,87 @@
         @else
           <img class="img "    src="{{URL::asset('/img/boss.png')}}" style="width:50px;height:50px"       alt="Card image cap">
         @endif
-        <p class="">#{{$secretaire->id}}</p>
-
       </center>
     </div>
     <div class="col-10">
       <h5 class="">{{$secretaire->nom}} {{$secretaire->prenom}} </h5>
       <h6><img class="img"    src="{{URL::asset('/img/smartphone.png')}}"       alt="Card image cap">{{$secretaire->telephone}}</h6>
-      <h6 class="">{{$secretaire->naissance}}</h6>
-      <a data-toggle="modal" data-target="#info{{$secretaire->id}}" ><span class="badge badge-success">login</span></a>
+      <h6><img class="img"    src="{{URL::asset('/img/gmail.png')}}"       alt="Card image cap"> {{$secretaire->user->email}}</h6>
       <!-- Modal -->
 <div class="modal fade" id="info{{$secretaire->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter un utilisateur </h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+          @if ($secretaire->sexe == 'F')
+            <img class="img "    src="{{URL::asset('/img/secretary.png')}}" style="width:50px;height:50px"   alt="Card image cap">
+          @else
+            <img class="img "    src="{{URL::asset('/img/boss.png')}}" style="width:50px;height:50px"       alt="Card image cap">
+          @endif
+            {{$secretaire->nom}} {{$secretaire->prenom}}
+         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-            {{-- form login sart here --}}
+              {{--  info sart here --}}
 
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Cin</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$secretaire->cin}}</h6>
+                    </div>
+                </div>
 
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Adresse</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$secretaire->adrresse}}</h6>
+                    </div>
+                </div>
 
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Date de début</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$secretaire->date_debut}}</h6>
+                    </div>
+                </div>
 
-                                        <div class="col-md-6">
-                                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$secretaire->nom}}" required autofocus>
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Date de naissance</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$secretaire->naissance}}</h6>
+                    </div>
+                </div>
 
-                                            @if ($errors->has('name'))
-                                                <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-            {{-- form login end here --}}
+                {{--  info sart here --}}
       </div>
 
     </div>
   </div>
 </div>
       <hr>
-      <div class="row">{{-- Buttons edit / delete --}}
-        <div class="col">
+      <div class="row">{{-- Buttons info edit / delete --}}
+        <div class="col-4">
+            <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info{{$secretaire->id}}"></a>
+        </div>
+        <div class="col-4">
           <a href="{{url('secretaire/'.$secretaire->id.'/edit')}}">
             <button type="button" name="button">
               <img src="{{URL::asset('/img/wrench.png')}}" alt="profile Pic" >
             </button>
             </a>
         </div>
-        <div class="col">
+        <div class="col-4">
           <form class="" action="{{url('secretaire/'.$secretaire->id)}}" method="post">
                 {{csrf_field()}}
               <input type="hidden" name="_method" value="DELETE" >
@@ -136,7 +114,6 @@
               </a>
             </form>
         </div>
-
       </div>
     </div>
   </div>
@@ -166,22 +143,86 @@
           <img class="img "    src="{{URL::asset('/img/doctor_male.png')}}" style="width:50px;height:50px"       alt="Card image cap">
         @endif
       </center>
-      <p class="text-center">#{{$technicien->id}}</p>
     </div>
     <div class="col-10">
       <h5 class="">{{$technicien->nom}} {{$technicien->prenom}} </h5>
-      <h6><img class="img"    src="{{URL::asset('/img/smartphone.png')}}"       alt="Card image cap">{{$technicien->telephone}}
-</h6>
-      <p class="">{{$technicien->naissance}}</p>
-      <div class="row">{{-- Buttons edit / delete --}}
-        <div class="col">
+      <h6><img class="img"    src="{{URL::asset('/img/smartphone.png')}}"       alt="Card image cap">{{$technicien->telephone}}</h6>
+      <h6><img class="img"    src="{{URL::asset('/img/gmail.png')}}"       alt="Card image cap"> {{$technicien->user->email}}</h6>
+      <!-- Modal -->
+<div class="modal fade" id="info{{$technicien->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          @if ($technicien->sexe == 'F')
+            <img class="img "    src="{{URL::asset('/img/doctor.png')}}" style="width:50px;height:50px"   alt="Card image cap">
+          @else
+            <img class="img "    src="{{URL::asset('/img/doctor_male.png')}}" style="width:50px;height:50px"       alt="Card image cap">
+          @endif
+            {{$technicien->nom}} {{$technicien->prenom}}
+         </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+              {{--  info sart here --}}
+
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Cin</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$technicien->cin}}</h6>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Adresse</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$technicien->adrresse}}</h6>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Date de début</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$technicien->date_debut}}</h6>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                          <h5>Date de naissance</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>{{$technicien->naissance}}</h6>
+                    </div>
+                </div>
+
+                {{--  info sart here --}}
+      </div>
+
+    </div>
+  </div>
+</div>
+      <hr>
+      <div class="row">{{-- Buttons info edit / delete --}}
+        <div class="col-4">
+            <a href="#"><img src="{{URL::asset('/img/info.png')}}" alt="profile Pic" data-toggle="modal" data-target="#info{{$technicien->id}}"></a>
+        </div>
+        <div class="col-4">
           <a href="{{url('technicien/'.$technicien->id.'/edit')}}">
             <button type="button" name="button">
               <img src="{{URL::asset('/img/wrench.png')}}" alt="profile Pic" >
             </button>
             </a>
         </div>
-        <div class="col">
+        <div class="col-4">
           <form class="" action="{{url('technicien/'.$technicien->id)}}" method="post">
                 {{csrf_field()}}
               <input type="hidden" name="_method" value="DELETE" >

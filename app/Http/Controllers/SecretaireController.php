@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Secretaire ;
+use App\User ;
+use Illuminate\Support\Facades\Hash;
+
+
+use Auth;
 
 class SecretaireController extends Controller
 {
@@ -42,6 +47,12 @@ class SecretaireController extends Controller
     public function store(Request $req)
     {
       $secretaire = new Secretaire();
+      $user = new User();
+      $user->name = $req->input('nom');
+      $user->email = $req->input('email');
+      $user->password = Hash::make($req->input('password'));
+      $user->save();
+    //Secretaire
      $secretaire->nom = $req->input('nom');
      $secretaire->prenom = $req->input('prenom');
      $secretaire->adrresse = $req->input('addresse');
@@ -50,6 +61,7 @@ class SecretaireController extends Controller
      $secretaire->naissance = $req->input('naissance');
      $secretaire->date_debut = $req->input('date_debut');
      $secretaire->telephone = $req->input('telephone');
+     $secretaire->user_id = $user->id ;
 
      $secretaire->save();
        return redirect('rh');

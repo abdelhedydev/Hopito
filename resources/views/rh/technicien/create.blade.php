@@ -63,6 +63,16 @@
       <input type="date" class="form-control" id="date_debut" name="date_debut" placeholder="Nom responsable" required>
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="responsable">Email</label>
+      <input type="email" class="form-control" id="date_debut" name="email"maxlength="255" placeholder="foulen.foulen@gmail.com" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="responsable">Password</label>
+      <input type="password" class="form-control" id="date_debut" name="password" minlength="8" placeholder="" required>
+    </div>
+  </div>
   <button type="submit" class="btn btn-success">Enregistrer</button>
 </form>
 </div>
