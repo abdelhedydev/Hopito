@@ -18,11 +18,11 @@
   {{-- rdv aujourd'jui  --}}
   <div class="col-3">
     <div class="card border-light mb-3 " style="width: 12rem;">
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ $rdv->patient->nom}}
-          {{ $rdv->patient->prenom}}
-          </h5>
+      <div class="card-header">
+        {{ $rdv->patient->nom}} {{ $rdv->patient->prenom}}
+</div>
+      <div class="card-body text-center">
+
           @if ($rdv->etape ==1)
             <p class="card-text text-success">Étape {{$rdv->etape}}  </p>
           @elseif ($rdv->etape == 2)
@@ -45,7 +45,12 @@
             <img src="{{URL::asset('/img/clock.png')}}" alt="profile Pic" >{{$rdv->time}}</a>
             <p>Total : {{$rdv->valeur}}</p>
         </center>
+
       </div>
+      {{-- card footer --}}
+      <div class="card-footer text-center">
+  <a href="test">Test</a>
+</div>
     </div>{{--end crd  --}}
     <br>
   </div>

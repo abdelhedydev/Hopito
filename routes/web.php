@@ -26,6 +26,8 @@ Route::resource('patient','PatientController');
 Route::resource('secretaire','SecretaireController')->middleware('checkRole');
 Route::resource('technicien','TechnicienController')->middleware('checkRole');
 Route::resource('rende','RdvController');
+Route::resource('test','TestController');
+Route::resource('item','ItemController');
 
 //RH
 Route::get('/rh', 'RhController@index')->name('rh');

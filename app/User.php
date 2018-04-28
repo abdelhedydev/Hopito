@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     public function rdv(){
-     return $this->hasMany('App\Store');
+     return $this->hasMany('App\RDV');
    }
 
 }
