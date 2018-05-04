@@ -28,10 +28,25 @@
                       <div class="card-body">
                           <div class="row">
                               <div class="col-2">
-                                <img src="{{asset('storage/img/'.$test->icon)}}" alt="">
+                                @if ($item->icon)
+                                  <img style="width:40px;height:40px;" src="{{asset('storage/img/'.$item->icon)}}" alt="">
+                                @else
+                                  <img style="width:40px;height:40px;" src="{{URL::asset('/img/to-do.png')}}" alt="">
+                                @endif
                               </div>
-                              <div class="col-10">
+                              <div class="col-9">
                                   {{$item->nom}}
+                              </div>
+                              <div class="col-1">
+                                <form class="" action="{{url('item/'.$item->id)}}" method="post">
+                                      {{csrf_field()}}
+                                    <input type="hidden" name="_method" value="DELETE" >
+                                    <a href="" >
+                                      <button type="submit" class="btn btn-outline-primary" name="button">
+                                        <img src="{{URL::asset('/img/garbage.png')}}" alt="profile Pic" >
+                                      </button>
+                                    </a>
+                                  </form>
                               </div>
                           </div>
                       </div>

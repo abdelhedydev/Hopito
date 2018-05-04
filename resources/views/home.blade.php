@@ -49,7 +49,7 @@
       </div>
       {{-- card footer --}}
       <div class="card-footer text-center">
-  <a href="test">Test</a>
+  <a href="{{$rdv->id}}/exam">Test</a>
 </div>
     </div>{{--end crd  --}}
     <br>

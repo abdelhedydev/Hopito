@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@index');
 //Test
 Route::get('/test', 'HomeController@test')->name('test');
+//Exam
+Route::get('/{id}/exam', 'HomeController@exam')->name('exam');
 Route::get('/changePassword','HomeController@showChangePasswordForm');
 Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
 
@@ -28,6 +30,7 @@ Route::resource('technicien','TechnicienController')->middleware('checkRole');
 Route::resource('rende','RdvController');
 Route::resource('test','TestController');
 Route::resource('item','ItemController');
+//Route::resource('exam','ExamController');
 
 //RH
 Route::get('/rh', 'RhController@index')->name('rh');

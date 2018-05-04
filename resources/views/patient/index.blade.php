@@ -155,6 +155,7 @@
                                   nombre des anciens rendez-vous  {{$k->nbr}} / Etape  {{$k->etape}}
                                 </small>
                               @break;
+                              
                               {{-- Patient n'a ps de rdv--}}
                             @endif
                           @endforeach

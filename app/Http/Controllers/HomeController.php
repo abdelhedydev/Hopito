@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RDV;
+use App\Exam;
+use App\Test;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -49,9 +51,13 @@ class HomeController extends Controller
 
     public function test(){
       return view('test.index');
-      //return redirect("/test");
     }
+    public function exam($id){
 
+      $exams = DB::table('exams')->where('rdv_id', $id)->get();
+      $tests=Test::all();
+      return view('exam.index')->with(['exams'=>$exams,'tests'=>$tests,'id'=>$id]);
+    }
     public function showChangePasswordForm(){
        return view('auth.changepassword');
    }
