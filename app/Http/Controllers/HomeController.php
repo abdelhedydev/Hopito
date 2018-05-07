@@ -54,8 +54,9 @@ class HomeController extends Controller
     }
     public function exam($id){
 
-      $exams = DB::table('exams')->where('rdv_id', $id)->get();
-      $tests=Test::all();
+      //$exams = DB::table('exams')->where('rdv_id', $id)->get();
+      $exams = Exam::all();
+      $tests=Test::all();//Right Menu
       return view('exam.index')->with(['exams'=>$exams,'tests'=>$tests,'id'=>$id]);
     }
     public function showChangePasswordForm(){

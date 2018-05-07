@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Exam;
+use Auth;
+
 class ExamController extends Controller
 {
     /**
@@ -34,7 +37,14 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam = new Exam();
+        $exam->test_id = $request->input('test_id');
+        $exam->rdv_id = $request->input('rdv_id');
+        $exam->score = $request->input('score');
+        $exam->max = $request->input('max');
+        $exam->user_id= Auth::user()->id ;
+        $exam->save();
+          return redirect($exam->rdv_id.'/exam');
     }
 
     /**
@@ -79,6 +89,8 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $exam = Exam::find($id);
+           $exam->delete();
+    return redirect($exam->rdv_id.'/exam');
     }
 }

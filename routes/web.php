@@ -30,7 +30,7 @@ Route::resource('technicien','TechnicienController')->middleware('checkRole');
 Route::resource('rende','RdvController');
 Route::resource('test','TestController');
 Route::resource('item','ItemController');
-//Route::resource('exam','ExamController');
+Route::resource('exam','ExamController');
 
 //RH
 Route::get('/rh', 'RhController@index')->name('rh');

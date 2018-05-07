@@ -14,4 +14,7 @@ class RDV extends Model
   {
       return $this->belongsTo('App\User');
   }
+  public function exam(){
+   return $this->hasMany('App\Exam');
+ }
 }

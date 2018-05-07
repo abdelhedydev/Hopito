@@ -30,5 +30,8 @@ class User extends Authenticatable
     public function rdv(){
      return $this->hasMany('App\RDV');
    }
+   public function exam(){
+    return $this->hasMany('App\Exam');
+  }
 
 }
