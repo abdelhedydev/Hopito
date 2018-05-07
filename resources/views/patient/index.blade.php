@@ -147,21 +147,23 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Valeur</label>
                           <div class="col-12">
-                          @if (count($query)>0)
+
+
+                          @if (count($patient->rdv))
                               @foreach ($query as $k)
                               @if ($k->patient_id == $patient->id)
                               <input required class="form-control" type="number" value="{{$k->valeur}}" name="valeur">
                               <small id="passwordHelpInline" class="text-muted">
-                                  nombre des anciens rendez-vous  {{$k->nbr}} / Etape  {{$k->etape}}
+                                  nombre des anciens rendez-vous  <b>{{$k->nbr}}</b> / Etape  {{$k->etape}}
                                 </small>
                               @break;
-                              
+
                               {{-- Patient n'a ps de rdv--}}
                             @endif
                           @endforeach
                 {{-- no query --}}
                         @else
-                            <input required class="form-control" type="number" name="valeur" placeholder="000">
+                            <input required class="form-control" type="number" name="valeur" placeholder="0">
                             @endif
 
                             </div>
@@ -172,7 +174,7 @@
 
     <label class="col-md-4 control-label" for="exampleFormControlSelect1">Etape  Traitement</label>
     <div class="col-12">
-      @if(count($query)>0)
+      @if(count($patient->rdv))
           @foreach ($query as $k)
               @if  (($k->patient_id == $patient->id)&&($k->nbr == $k->valeur))
                 <input class="form-control " id="disabledInput" type="text" placeholder="Etape" value="{{$k->etape+1}}" name="etape"  >

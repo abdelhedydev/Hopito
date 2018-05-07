@@ -42,7 +42,7 @@ class HomeController extends Controller
 
 
         $rdv= RDV::orderBy('time')->where('date', '=', $mydate)->get();//Pour aujourd'hui
-        $rdv2= RDV::orderBy('date','desc')->get();//Tous les rdvs
+        $rdv2= RDV::orderBy('date','desc')->simplePaginate(5);
 
 
         return view('home')->with("parameters",["rdv_today"=>$rdv,"rdv"=>$rdv2,"query"=>$query_etape]);
@@ -54,8 +54,7 @@ class HomeController extends Controller
     }
     public function exam($id){
 
-      //$exams = DB::table('exams')->where('rdv_id', $id)->get();
-      $exams = Exam::all();
+     $exams = Exam::all();
       $tests=Test::all();//Right Menu
       return view('exam.index')->with(['exams'=>$exams,'tests'=>$tests,'id'=>$id]);
     }

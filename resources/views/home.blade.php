@@ -104,6 +104,13 @@
          @endforeach
 
             </tbody>
+
 </table>
+<div class="pagination justify-content-center">
+      {{ $parameters['rdv']->links() }}
+
+</div>
+
+
 </div>
 @endsection

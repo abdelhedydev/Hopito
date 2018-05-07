@@ -54,6 +54,8 @@
                 @endforeach
 
               </div>
+              
+
 
               {{-- Item --}}
               <div class="col-1">
@@ -70,7 +72,7 @@
                       </div>
                       <div class="modal-body">
                         {{-- form new test --}}
-                        <form class="form-horizontal" action ="{{ url('item') }}" enctype="multipart/form-data"  method="post" id="newitemform">
+                        <form class="form-horizontal" action ="{{ url('item') }}" enctype="multipart/form-data"  method="post" id="newitemform{{$test->id}}">
                           {{csrf_field()}}
                             <!-- Password input-->
                             <div class="form-group">
@@ -95,7 +97,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" form="newitemform" class="btn btn-primary">Ajouter</button>
+                        <button type="submit" form="newitemform{{$test->id}}" class="btn btn-primary">Ajouter</button>
                       </div>
                     </div>
                   </div>

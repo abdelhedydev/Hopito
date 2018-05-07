@@ -8,7 +8,7 @@
       <br>
       <div class="row">
         {{-- list of Exams --}}
-        @if (count($exams))
+        @if (count($exams)>0 )
           <table class="table table-striped">
             <thead>
               <tr>
@@ -21,6 +21,7 @@
               </tr>
             </thead>
             <tbody>
+            
            @foreach ($exams as $exam)
              @if ($exam->rdv_id == $id)
                <tr>
@@ -46,7 +47,6 @@
               </tbody>
             </table>
         @else
-
           <h6>0 test a été affecté</h6>
         @endif
       </div>
